@@ -2,6 +2,7 @@
 // @route GET /api/v1/items
 // @access Public
 exports.getItems = async (req, res, next) => {
+  thisIsErrorCodeHere;
   try {
     const items = [
       {
