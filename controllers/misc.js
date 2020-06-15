@@ -30,7 +30,7 @@ exports.getInfo = (req, res, next) => {
  */
 exports.getMessage = (req, res, next) => {
   try {
-    // someErrorHere;
+    someErrorHere;
     return res.status(200).json({
       message: "This is a help message",
     });
