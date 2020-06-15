@@ -1,4 +1,0 @@
-{
-  "appService.defaultWebAppToDeploy": "/subscriptions/0918930b-3f26-45b8-ae34-aee99d476e21/resourceGroups/EOSResourceGroup/providers/Microsoft.Web/sites/dynatracer",
-  "appService.deploySubpath": "."
-}
