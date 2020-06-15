@@ -2,8 +2,8 @@
 // @route GET /api/v1/items
 // @access Public
 exports.getItems = async (req, res, next) => {
-  thisIsErrorCodeHere;
   try {
+    thisIsErrorCodeHere;
     const items = [
       {
         id: 1,
