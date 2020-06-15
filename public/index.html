@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+      integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -27,30 +29,84 @@
   </head>
 
   <body>
+    <div id="app">
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dynatracer</a>
+      </nav>
+      <div class="container">
 
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">Dynatracer</a>
-    </nav>
-    <div class="container">
-      <div class="jumbotron">
-        <h1 class="display-4">Dynatracer</h1>
-        <p class="lead">This is a simple web app to test Dynatrace.</p>
-        <hr class="my-4">
-        <p>Backend is monitored with One Agent.</p>
-        <a class="btn btn-primary btn-lg" href="/api/v1/items" role="button">Help</a>
-        <a class="btn btn-primary btn-lg" href="/api/v1/items/1" role="button">Get Item</a>
+        <div class="jumbotron">
+          <h1 class="display-4">Dynatracer</h1>
+          <p class="lead">This is a simple web app to test Dynatrace.</p>
+          <hr class="my-4">
+          <p>Backend is monitored with OneAgent.</p>
+          <p>Version <span class="badge badge-pill badge-primary">1.1</span></p>
+          <button class="btn btn-primary btn-sm" @click="showInfo"><i class="fa fa-info-circle"></i> Info</button>
+          <button class="btn btn-primary btn-sm" @click="showHelp"> <i class="fa fa-question-circle"></i> Help</button>
+          <button class="btn btn-primary btn-sm" @click="showMessage"> <i class="fa fa-question-circle"></i>
+            Message</button>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4" v-for="item in items">
+
+            <div class="card text-white bg-dark">
+
+              <div class="card-body">
+
+                <h5 class="card-title">{{ item.name }}
+                  <small>
+                    <span class="badge badge-pill float-right"
+                      :class="itemLevel(item.level).className">{{ itemLevel(item.level).name }}</span>
+                  </small>
+                </h5>
+
+                <hr class="hr-light">
+
+                <p class="card-text">{{ item.description }}</p>
+                <div class="text-right">
+                  <button href="#" class="btn btn-outline-danger btn-sm" @click="removeItem(item._id)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="card" style="width: 18rem;">
+          <div class="card-header"><i class="far fa-file-alt"></i> New Item</div>
+          <div class="card-body">
+            <p class="card-text">
+              <input type="text" class="form-control" v-model="item.name" placeholder="Name">
+              <br>
+              <input type="text" class="form-control" v-model="item.description" placeholder="Description">
+              <br>
+              <select class="form-control" v-model="item.level">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+              </select>
+              <br>
+              <button type="button" class="btn btn-outline-primary" @click="addItem">Submit</button>
+            </p>
+          </div>
+        </div>
+
       </div>
+
 
     </div>
-
-    <footer class="footer">
-      <div class="container">
-        <span class="text-muted">@Fujitsu</span>
-      </div>
-    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/app.js"></script>
     <script type="text/javascript"
       src="https://agents.dpm.fujitsu.fi:8888/jstag/managed/54ff1538-e549-4497-ab6e-aef96fdf1436/ea7c4b59f27d43eb_complete.js"
       crossorigin="anonymous"></script>
+
   </body>
 
 </html>

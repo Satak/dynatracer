@@ -10,6 +10,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/api/v1/items", require("./routes/items"));
+app.use("/api/v1/misc", require("./routes/misc"));
 
 const PORT = process.env.PORT || 5000;
 
